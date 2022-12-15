@@ -1,0 +1,152 @@
+<section class="blog-posts grid-system">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-6" *ngFor="let blog of blogDetails">
+                            <div class="blog-post">
+                                <div class="blog-thumb" *ngIf="blog.pictures.length != 0">
+                                    <img [src] = "blog.pictures[0].url" alt="">
+                                </div>
+                                <div class="down-content">
+                                    <span>{{blog.category}}</span>
+                                    <a routerLink=""><h4>{{blog.title}}</h4></a>
+                                    <ul class="post-info">
+                                        <li>{{blog.date}}</li>
+                                    </ul>
+                                    <ul class="post-info">
+                                        <button (click)="deleteBlog(blog.blogId)">Delete</button>
+                                    </ul>
+                                    <ul class="post-info">
+                                        <button>Edit</button>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-12" *ngIf="${searchInput == null} and ${blogSorted == false}">
+                            <ul class="page-numbers">
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination"
+                                     *ngFor="pageNumber : ${#numbers.sequence(1,T(java.lang.Math).min(7,blogPage.totalPages))}">
+                                    <a th:href="@{/blog/list(size=${blogPage.size}, page=${pageNumber})}"
+                                       th:text="${pageNumber}" th:class="${pageNumber==blogPage.number + 1} ? active"></a>
+                                </li>
+
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination">
+                                    <span *ngIf="${blogPage.number > 6}"> ... </span>
+                                    <a *ngIf="${blogPage.number > 6}"
+                                       th:text="${blogPage.number + 1}"
+                                       th:class="active"></a>
+                                </li>
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination" >
+                                    <a *ngIf="${blogPage.number + 1 < blogPage.totalPages}"
+                                       th:href="@{/blog/list(size=${blogPage.size},page=${blogPage.number+2})}"><i class="fa fa-angle-double-right"></i></a>
+                                    <span th:unless="${blogPage.number + 1 < blogPage.totalPages}"><i class="fa fa-angle-double-right"></i></span>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <!-- <div class="col-lg-12" *ngIf="${searchInput != null} and ${blogSorted == false}">
+                            <ul class="page-numbers">
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination"
+                                    *ngFor="pageNumber : ${#numbers.sequence(1,T(java.lang.Math).min(7,blogPage.totalPages))}">
+                                    <a th:href="@{/blog/search(searchInput=${searchInput},size=${blogPage.size}, page=${pageNumber})}"
+                                       th:text="${pageNumber}" th:class="${pageNumber==blogPage.number + 1} ? active"></a>
+                                </li>
+
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination">
+                                    <span *ngIf="${blogPage.number > 6}"> ... </span>
+                                    <a *ngIf="${blogPage.number > 6}"
+                                       th:text="${blogPage.number + 1}"
+                                       th:class="active"></a>
+                                </li>
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination" >
+                                    <a *ngIf="${blogPage.number + 1 < blogPage.totalPages}"
+                                       th:href="@{/blog/search(searchInput=${searchInput},size=${blogPage.size},page=${blogPage.number+2})}"><i class="fa fa-angle-double-right"></i></a>
+                                    <span th:unless="${blogPage.number + 1 < blogPage.totalPages}"><i class="fa fa-angle-double-right"></i></span>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <!-- <div class="col-lg-12" *ngIf="${blogSorted == true}">
+                            <ul class="page-numbers">
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination"
+                                    *ngFor="pageNumber : ${#numbers.sequence(1,T(java.lang.Math).min(7,blogPage.totalPages))}">
+                                    <a th:href="@{/blog/list/sort(sortBy='title', size=${blogPage.size}, page=${pageNumber})}"
+                                       th:text="${pageNumber}" th:class="${pageNumber==blogPage.number + 1} ? active"></a>
+                                </li>
+
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination">
+                                    <span *ngIf="${blogPage.number > 6}"> ... </span>
+                                    <a *ngIf="${blogPage.number > 6}"
+                                       th:text="${blogPage.number + 1}"
+                                       th:class="active"></a>
+                                </li>
+                                <li *ngIf="${blogPage.totalPages > 0}" class="pagination" >
+                                    <a *ngIf="${blogPage.number + 1 < blogPage.totalPages}"
+                                       th:href="@{/blog/list/sort(sortBy='title', size=${blogPage.size},page=${blogPage.number+2})}"><i class="fa fa-angle-double-right"></i></a>
+                                    <span th:unless="${blogPage.number + 1 < blogPage.totalPages}"><i class="fa fa-angle-double-right"></i></span>
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sidebar-item recent-posts" style="margin-top: 0px;">
+                                <div class="sidebar-heading">
+                                    <a routerLink="/add-blog"><h2 style="color: #f48840">Add blog</h2></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="sidebar-item recent-posts" style="margin-top: 0px;">
+                                <div class="sidebar-heading">
+                                    <a routerLink=""><h2 style="color: #f48840">Sort by title</h2></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-12">
+                            <div class="sidebar-item search">
+                                <form id="search_form" th:action="@{/blog/search}">
+                                    <input type="text" th:name="searchInput" th:value="${searchInput}"
+                                           class="searchText" placeholder="type to search..." autocomplete="on">
+                                </form>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-lg-12">
+                            <div class="sidebar-item recent-posts">
+                                <div class="sidebar-heading">
+                                    <h2>Recent Posts</h2>
+                                </div>
+                                <div class="content">
+                                    <ul>
+                                        <li><a th:href="@{/blog/{blogId}(blogId=${lastBlog.blogId})}" *ngFor="lastBlog : ${lastPosted}">
+                                            <h5 th:text="${lastBlog.title}"></h5>
+                                            <span th:text="${lastBlog.date}"></span>
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <div class="sidebar-item categories">
+                                <div class="sidebar-heading">
+                                    <h2>Categories</h2>
+                                </div>
+                                <div class="content">
+                                    <ul>
+                                        <li *ngFor="let category of categoryEnum">
+                                            <a href="#">{{category}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
