@@ -16,7 +16,6 @@ import { DragDirective } from './drag.directive'
 import { MatTableModule } from '@angular/material/table' 
 import {MatIconModule} from '@angular/material/icon';
 import { BlogDetailsComponent } from './blog-details/blog-details.component'
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -40,7 +39,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatGridListModule,
     MatTableModule,
     MatIconModule,
-    NgbModule
     
   ],
   providers: [],
