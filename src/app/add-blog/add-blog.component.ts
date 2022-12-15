@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Blog, CategoryEnum } from 'src/app/model/blog.model';
 import { FileHandle } from 'src/app/model/file-handle.model';
@@ -15,10 +15,13 @@ import { BlogService } from '../service/blog.service';
 })
 export class AddBlogComponent implements OnInit{
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private blogService: BlogService, private sanitizer: DomSanitizer) {}
+  constructor(private blogService: BlogService, private sanitizer: DomSanitizer,
+    private activatedRoute: ActivatedRoute) {}
+
+  isNewBlog = true;
 
   blog: Blog = {
-    blogId: 0,
+    blogId: null,
     title: "",
     content: "",
     date: "",
@@ -29,7 +32,10 @@ export class AddBlogComponent implements OnInit{
 
 
   ngOnInit(): void {
-    
+    this.blog = this.activatedRoute.snapshot.data['blog'];
+    if(this.blog && this.blog.blogId) {
+        this.isNewBlog = false;
+    }
   }
 
   addBlog(blogForm: NgForm) {

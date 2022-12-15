@@ -19,7 +19,10 @@
                                         <button (click)="deleteBlog(blog.blogId)">Delete</button>
                                     </ul>
                                     <ul class="post-info">
-                                        <button>Edit</button>
+                                        <button (click)="editBlogDetails(blog.blogId)">Edit</button>
+                                    </ul>
+                                    <ul class="post-info">
+                                        <button (click)="showBlogDetails(blog.blogId)">View Details</button>
                                     </ul>
                                 </div>
                             </div>

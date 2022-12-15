@@ -20,9 +20,12 @@ export class BlogService {
     return this.http.post<Blog>(`${this.url}`, blog);
   }
 
-  public deleteBlog(blogId: number) {
+  public deleteBlog(blogId: any) {
     return this.http.delete(`${this.url}` + `/` + blogId);
   }
 
+  public getBlogById(blogId: any) {
+    return this.http.get<Blog>(`${this.url}` + `/` + blogId)
+  }
 
  }

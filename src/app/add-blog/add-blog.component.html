@@ -34,7 +34,8 @@
 
           <div align="end">
             <button mat-stroked-button color="primary" style="margin-right: 3px;">Clear</button>
-            <button mat-stroked-button color="primary" type="submit">Add Blog</button>
+            <button mat-stroked-button color="primary" type="submit" *ngIf="isNewBlog">Add Blog</button>
+            <button mat-stroked-button color="primary" type="submit" *ngIf="!isNewBlog">Update Blog</button>
           </div>
 
 

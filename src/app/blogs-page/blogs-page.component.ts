@@ -17,7 +17,9 @@ export class BlogsPageComponent implements OnInit{
   displayedColumns: string[] =['Id','Title', 'Category', 'Content', 'Author Name', 'Images', 'Edit', 'Delete']
   categoryEnum: CategoryEnum[] = [CategoryEnum.FASHION, CategoryEnum.FOOD, CategoryEnum.TRAVEL, CategoryEnum.OTHER];
 
-  constructor(private router: Router, private blogService: BlogService, private imageProcessingService: ImageProcessingService) {
+  constructor(private router: Router, 
+    private blogService: BlogService, 
+    private imageProcessingService: ImageProcessingService) {
 
   }
 
@@ -47,7 +49,7 @@ export class BlogsPageComponent implements OnInit{
       });
   };
 
-  deleteBlog(blogId:number) {
+  deleteBlog(blogId:any) {
     this.blogService.deleteBlog(blogId).subscribe(
       (resp) => {
         this.getBlogs();
@@ -62,7 +64,13 @@ export class BlogsPageComponent implements OnInit{
     console.log(blog);
   }
 
+  editBlogDetails(blogId: any) {
+    this.router.navigate(['/add-blog', {blogId: blogId}]);
+  }
 
+  showBlogDetails(blogId: any) {
+    this.router.navigate(['/blog-details', {blogId: blogId}])
+  }
 
   ngOnInit(): void {
     this.getBlogs();

@@ -1,7 +1,7 @@
 import { FileHandle } from "./file-handle.model";
 
 export interface Blog {
-    blogId: number;
+    blogId: null;
     title: String;
     content: String;
     category: CategoryEnum;

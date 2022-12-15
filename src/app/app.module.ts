@@ -14,7 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { DragDirective } from './drag.directive'
 import { MatTableModule } from '@angular/material/table' 
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { BlogDetailsComponent } from './blog-details/blog-details.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import {MatIconModule} from '@angular/material/icon'
     AddBlogComponent,
     BlogsPageComponent,
     DragDirective,
+    BlogDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,9 @@ import {MatIconModule} from '@angular/material/icon'
     FormsModule,
     MatGridListModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    NgbModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
