@@ -12,6 +12,7 @@ import { BlogService } from '../service/blog.service';
 export class BlogDetailsComponent implements OnInit{
 
   blog!: Blog;
+  selectedBlogIndex = 0;
 
   constructor(private activatedRoute: ActivatedRoute, private blogService: BlogService, private router: Router) {}
 
@@ -49,4 +50,7 @@ export class BlogDetailsComponent implements OnInit{
     return false; 
   }
 
+  changeIndex(i: any) {
+    this.selectedBlogIndex = i;
+  }
 }
