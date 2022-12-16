@@ -23,6 +23,23 @@ export class BlogsPageComponent implements OnInit{
 
   }
 
+  searchByKeyword(searchkeyword:string){
+    console.log(searchkeyword);
+    this.blogService.searchBlogByKeyword(searchkeyword)
+    .pipe(
+      map((x: Blog[], i) => x.map((blog: Blog) => this.imageProcessingService.createImages(blog)))
+    )
+    .subscribe(
+      (resp: Blog[]) => {
+        console.log(resp);
+        this.blogDetails = resp;
+      }, (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    )
+  }
+
+
   getBlogs() {
     this.blogService.getBlogs()
     .pipe(
