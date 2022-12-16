@@ -20,8 +20,8 @@ export class BlogResolveService implements Resolve<Blog>{
     if(id) {
       return this.blogService.getBlogById(id)
       .pipe(
-        map(p => this.imageProcessingService.createImages(p))
-      );
+        map(p => this.imageProcessingService.createImages(p)
+      ));
 
     } else {
         return of(this.getBlogDetails());
@@ -36,7 +36,8 @@ export class BlogResolveService implements Resolve<Blog>{
         date: "",
         category: CategoryEnum.OTHER,
         authorName: "",
-        pictures: []
+        pictures: [],
+        comments: []
     }
   }
   

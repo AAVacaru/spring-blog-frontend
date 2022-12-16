@@ -1,3 +1,4 @@
+import { Comment } from "./comment.model";
 import { FileHandle } from "./file-handle.model";
 
 export interface Blog {
@@ -8,6 +9,7 @@ export interface Blog {
     authorName: String;
     date: String;
     pictures: FileHandle[];
+    comments: Comment[];
 }
 
 export enum CategoryEnum {

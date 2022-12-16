@@ -69,6 +69,7 @@ export class BlogsPageComponent implements OnInit{
   }
 
   showBlogDetails(blogId: any) {
+    console.log(blogId)
     this.router.navigate(['/blog-details', {blogId: blogId}])
   }
 

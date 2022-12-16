@@ -1,9 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { Blog, CategoryEnum } from 'src/app/model/blog.model';
 import { FileHandle } from 'src/app/model/file-handle.model';
 import { BlogService } from '../service/blog.service';
@@ -27,9 +26,9 @@ export class AddBlogComponent implements OnInit{
     date: "",
     category: CategoryEnum.OTHER,
     authorName: "",
-    pictures: []
+    pictures: [],
+    comments: [],
   }
-
 
   ngOnInit(): void {
     this.blog = this.activatedRoute.snapshot.data['blog'];
@@ -86,7 +85,6 @@ export class AddBlogComponent implements OnInit{
 
     }
   }
-
 
   removeImages(i: number) {
     this.blog.pictures.splice(i, 1)

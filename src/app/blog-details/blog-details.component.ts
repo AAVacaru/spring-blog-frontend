@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from '../model/blog.model';
+import { Comment } from '../model/comment.model';
 import { BlogService } from '../service/blog.service';
 
 @Component({
@@ -12,6 +14,13 @@ import { BlogService } from '../service/blog.service';
 export class BlogDetailsComponent implements OnInit{
 
   blog!: Blog;
+  comment: Comment = {
+    commentId: null,
+    content: "",
+    authorName: "",
+    date: "",
+    blogId: null
+  }
   selectedBlogIndex = 0;
 
   constructor(private activatedRoute: ActivatedRoute, private blogService: BlogService, private router: Router) {}
@@ -52,5 +61,29 @@ export class BlogDetailsComponent implements OnInit{
 
   changeIndex(i: any) {
     this.selectedBlogIndex = i;
+  }
+
+  addComment(commentForm: NgForm, blogId: any) {
+      this.blogService.addComment(this.comment, blogId).subscribe(
+        (response: Comment) => {
+          console.log(response);
+          commentForm.reset();
+          window.location.reload();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      );
+  }
+
+  deleteComment(commentId: any) {
+    this.blogService.deleteComment(commentId).subscribe(
+      (resp) => {
+        window.location.reload();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
   }
 }
