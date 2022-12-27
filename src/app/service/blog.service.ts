@@ -9,25 +9,27 @@ import { Comment } from '../model/comment.model';
 })
 export class BlogService {
 
-  private url = 'http://localhost:8080/blog-service/blogs';
+  private blogUrl = 'http://localhost:8080/blog-service/blogs';
+  private searchUrl = 'http://localhost:8082/search-service';
   private commentUrl = 'http://localhost:8081/comment-service/blogs';
+
 
   constructor(private http: HttpClient) { }
 
   public getBlogs() {
-    return this.http.get<Blog[]>(`${this.url}`);
+    return this.http.get<Blog[]>(`${this.blogUrl}`);
   }
 
   public addBlog(blog: FormData) {
-    return this.http.post<Blog>(`${this.url}`, blog);
+    return this.http.post<Blog>(`${this.blogUrl}`, blog);
   }
 
-  public deleteBlog(blogId: any) {
-    return this.http.delete(`${this.url}` + `/` + blogId);
+  public deleteBlog(blogId: number) {
+    return this.http.delete(`${this.blogUrl}` + `/` + blogId);
   }
 
   public getBlogById(blogId: any) {
-    return this.http.get<Blog>(`${this.url}` + `/` + blogId)
+    return this.http.get<Blog>(`${this.blogUrl}` + `/` + blogId)
   }
 
   public addComment(comment: Comment, blogId: any) {
@@ -36,6 +38,10 @@ export class BlogService {
 
   public deleteComment(commentId: any) {
     return this.http.delete(`${this.commentUrl}` + `/` + commentId);
+  }
+
+  public searchBlogByKeyword(keyword:string){
+    return this.http.get<Blog[]>(`${this.searchUrl}` + `?searchKey=` + keyword);
   }
 
  }
