@@ -1,0 +1,12 @@
+version: '2.13'
+
+services:
+  angular-service:
+    container_name: angular-container
+    build: ./
+    volumes:
+    - './:/usr/src/app'
+    ports:
+      - "4200:4200"
+    command: >
+      bash -c "npm start"
